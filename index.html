@@ -47,6 +47,7 @@
     const Circle = (p) => <SvgIcon path={<circle cx="12" cy="12" r="10"/>} {...p} />;
     const AlertCircle = (p) => <SvgIcon path={<><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></>} {...p} />;
     const Download = (p) => <SvgIcon path={<><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></>} {...p} />;
+    const UserIcon = (p) => <SvgIcon path={<><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></>} {...p} />;
 
     // --- Data & Translations ---
     const translations = {
@@ -61,10 +62,24 @@
         themeToggle: "切換主題",
         voicePlay: "語音導覽",
         voiceStop: "停止語音",
-        exportYouCsv: "匯出個人(Y)決策 CSV",
-        exportTeamCsv: "匯出團隊(T)決策 CSV",
+        
+        // Export Section
+        userInfoTitle: "填寫匯出資訊",
+        groupLabel: "組別",
+        groupSelect: "請選擇組別",
+        studentIdLabel: "學號",
+        studentIdPlaceholder: "e.g. 112212099",
+        nameLabel: "姓名",
+        namePlaceholder: "e.g. 王小明",
+        exportYouCsv: "匯出個人(Y)決策",
+        exportTeamCsv: "匯出團隊(T)決策",
+        exportBothCsv: "匯出個人&團隊決策",
         checkAllocation: "檢查分配 (4項/群)",
-        exportWarning: "注意：分群 1~4 必須各選 4 個才能匯出 CSV",
+        exportWarningItems: "注意：分群 1~4 必須各選 4 個才能匯出。",
+        exportWarningUser: "請完整填寫組別、學號與姓名以啟用匯出功能。",
+        filenameY: "個人決策",
+        filenameT: "團隊決策",
+        filenameBoth: "個人與團隊決策",
         
         situationTitle: "I. 狀況說明 (Situation Overview)",
         situationText: "8月8日上午11:45，你與其他四位同伴，穿著夏天的休閒服，一起站在美國西南部 Sonora 沙漠的一處地方，茫然地凝視著20分鐘前還搭乘的雙引擎輕型飛機殘骸，以及正副駕駛的遺體。雖然大夥在先前的迫降行動中受到不小的驚嚇，但存活的人大體上都安然無恙，並沒有大的創傷。\n\n其實，會發生這樣的不幸，實在令人意想不到。原本大夥可以安穩地搭乘民航機從 Acapulco 回到 Prescott 的家中，但就在要離開 Acapulco 時，由於天氣太好，大夥臨時決定搭乘這架巡航半徑1,400浬，飛行速度185節，且空間足夠容納我們一行人的雙引擎飛機，慢慢飛回家鄉。\n\n從 Acapulco 起飛後，大約在10點過後飛機降落在墨西哥的Hermosillo 補充油料，10:30再度起飛。10:45 時你聽到駕駛員經由Nogales 聯絡 Tucson 市的無線電，要求通過美墨邊界的ADI區，駕駛員告訴大家，大約正午過後即可到達 Prescott，然後便把(交流)發電機切掉。\n\n就在飛越過 Nogales 後沒多久，飛機的右翼引擎突然熄火，15分鐘後左翼引擎同樣也熄火，使得無線電與其他電子設備也跟著失靈。隨著飛機的下降，駕駛員警告大家準備緊急迫降，他同時也提到我們現在的位置，大約是在向西或西北偏離航道30浬的地方。\n\n接著，很不幸的，當飛機迫降時，機輪撞到地面，導致飛機打轉，右機翼撞到岩石而嚴重損壞，油箱因而撞裂，機尾也完全斷裂，其餘殘骸則與左翼混在一起。當飛機靜止時，大夥兒立即反應要由機尾斷裂處逃生，此時空氣中充滿了濃厚的汽油味，而正副駕駛則嚴重受傷，且被座艙的機件卡住而動彈不得，於是大夥只好迅速地在汽油被燃爆之前逃離機骸。在大火中，可用來發送訊息的無線電發報機被燒壞了，而機尾部份則被彈到50碼以外的地方。\n\n發生災難的現場是一片佈滿石頭的沙漠，草叢裡有不少多次的Cholla仙人掌，以及少數 Saguro 仙人掌。根據失事前的氣象報告顯示此時的溫度高達110°F (約43.3°C)，而地面溫度更高達130°F (約54.4°C)。眺望山脈仍在遠方，而大夥兒回憶起最後一次看到文明世界的公路路標，似乎是在失事前的15分鐘。於是，所有存活夥伴收拾起驚嚇的心情，分頭在現場尋找行李及散置的物品。總共找到些許的現金，2條菸，1個打火機，3串鑰匙，以及清單所列的16項物品。\n\n恭喜你逃過了這場空難，但是你將面臨另一項的挑戰——如何安全地逃離這片沙漠。",
@@ -138,11 +153,25 @@
         themeToggle: "Toggle Theme",
         voicePlay: "Voice Guide",
         voiceStop: "Stop Voice",
-        exportYouCsv: "Export Individual (Y) CSV",
-        exportTeamCsv: "Export Team (T) CSV",
-        checkAllocation: "Check (4 items/rank)",
-        exportWarning: "Note: You must assign exactly 4 items to each rank (1-4) to export CSV.",
         
+        // Export Section
+        userInfoTitle: "Export Information",
+        groupLabel: "Group",
+        groupSelect: "Select Group",
+        studentIdLabel: "Student ID",
+        studentIdPlaceholder: "e.g. 112212099",
+        nameLabel: "Name",
+        namePlaceholder: "e.g. John Doe",
+        exportYouCsv: "Export Individual (Y)",
+        exportTeamCsv: "Export Team (T)",
+        exportBothCsv: "Export Indiv. & Team",
+        checkAllocation: "Check (4 items/rank)",
+        exportWarningItems: "Note: You must assign exactly 4 items to each rank (1-4) to export.",
+        exportWarningUser: "Please fill in Group, Student ID, and Name to enable export.",
+        filenameY: "Individual",
+        filenameT: "Team",
+        filenameBoth: "Indiv_and_Team",
+
         situationTitle: "I. Situation Overview",
         situationText: "It is 11:45 AM on August 8. You and four companions, dressed in casual summer wear, are standing in the Sonora Desert in the southwestern U.S., staring blankly at the wreckage of a twin-engine light aircraft you were in 20 minutes ago, along with the bodies of the pilot and co-pilot. Though shaken by the crash landing, the survivors are largely unhurt without major injuries.\n\nThis misfortune was entirely unexpected. You could have safely taken a commercial flight from Acapulco back to Prescott. However, due to excellent weather, the group decided to take this twin-engine plane—capable of a 1,400-nautical-mile range, 185-knot speed, and spacious enough for everyone—to fly home leisurely.\n\nAfter taking off from Acapulco, the plane landed in Hermosillo, Mexico, for refueling around 10:00 AM, and took off again at 10:30 AM. At 10:45 AM, you heard the pilot contact Tucson via radio near Nogales, requesting to cross the ADI zone. He announced you'd reach Prescott shortly after noon and then turned off the alternator.\n\nShortly after passing Nogales, the right engine suddenly failed, followed by the left engine 15 minutes later, knocking out the radio and electrical equipment. As the plane descended, the pilot warned of an emergency landing and noted you were approximately 30 miles west or northwest off course.\n\nUnfortunately, during the landing, the wheels struck the ground, causing the plane to spin. The right wing hit a rock, severely damaging it and rupturing the fuel tank; the tail completely snapped off. As the plane came to a halt, the group immediately escaped through the broken tail. The air was thick with the smell of gasoline. The pilots were severely injured and pinned by the cockpit wreckage. Before the gasoline exploded, the group fled the wreckage. In the fire, the radio transmitter was destroyed, and the tail section was thrown 50 yards away.\n\nThe crash site is a rocky desert, dotted with Cholla and a few Saguaro cacti. The pre-crash weather report indicated temperatures of 110°F (43.3°C), with ground temperatures reaching 130°F (54.4°C). Mountains are visible in the distance. The group recalls seeing the last highway sign indicating civilization about 15 minutes before the crash. Gathering your wits, the survivors scoured the area and found some cash, 2 cartons of cigarettes, 1 lighter, 3 sets of keys, and the 16 items listed below.\n\nCongratulations on surviving the crash. Now you face a new challenge: safely escaping this desert.",
         
@@ -206,12 +235,18 @@
       }
     };
 
+    const groupOptionsList = ["G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9", "G10", "G11", "G12"];
+
     // --- Main App Component ---
     const App = () => {
       const [lang, setLang] = useState('zh');
       const [theme, setTheme] = useState('light');
       const [isSpeaking, setIsSpeaking] = useState(false);
       
+      const [userGroup, setUserGroup] = useState('');
+      const [studentId, setStudentId] = useState('');
+      const [userName, setUserName] = useState('');
+
       const [answersA_Y, setAnswersA_Y] = useState([]);
       const [answersA_T, setAnswersA_T] = useState([]);
       const [answerB_Y, setAnswerB_Y] = useState('');
@@ -221,13 +256,13 @@
 
       const t = translations[lang];
 
-      // Validation Logic for Part C Groups
+      // Validation Logic
+      const isUserInfoValid = userGroup !== '' && studentId.trim() !== '' && userName.trim() !== '';
+
       const countGroups = (answers) => {
         const counts = { 1: 0, 2: 0, 3: 0, 4: 0 };
         Object.values(answers).forEach(ans => {
-          if (ans && ans.group) {
-            counts[ans.group]++;
-          }
+          if (ans && ans.group) counts[ans.group]++;
         });
         return counts;
       };
@@ -313,42 +348,67 @@
         });
       };
 
-      const handleExportCSV = (type) => {
-        let csvContent = '\uFEFF'; 
+      const generateCSVString = (type) => {
+        let content = '';
         const title = type === 'Y' ? t.you : t.team;
         
-        csvContent += `"${t.title} - ${title}"\n\n`;
-        
-        csvContent += `"${t.partATitle}"\n`;
+        content += `"${t.title} - ${title}"\n\n`;
+        content += `"${t.partATitle}"\n`;
         const ansA = type === 'Y' ? answersA_Y : answersA_T;
         ansA.forEach(id => {
           const opt = t.partAOptions.find(o => o.id === id);
-          csvContent += `"${opt.id}","${opt.text}"\n`;
+          content += `"${opt.id}","${opt.text}"\n`;
         });
-        csvContent += `\n`;
+        content += `\n`;
 
-        csvContent += `"${t.partBTitle}"\n`;
+        content += `"${t.partBTitle}"\n`;
         const ansB = type === 'Y' ? answerB_Y : answerB_T;
         if (ansB) {
           const optB = t.partBOptions.find(o => o.id === ansB);
-          csvContent += `"${optB.id}","${optB.text}"\n`;
+          content += `"${optB.id}","${optB.text}"\n`;
         }
-        csvContent += `\n`;
+        content += `\n`;
 
-        csvContent += `"${t.partCTitle}"\n`;
-        csvContent += `"${t.tableHeaders[0]}","${t.tableHeaders[1]}","${t.tableHeaders[2]}"\n`;
+        content += `"${t.partCTitle}"\n`;
+        const rankHeader = type === 'Y' ? t.tableHeaders[1] : t.tableHeaders[2];
+        const usageHeader = type === 'Y' ? t.tableHeaders[4] : t.tableHeaders[5];
+        content += `"${t.tableHeaders[0]}","${rankHeader}","${usageHeader}"\n`;
+
         const ansC = type === 'Y' ? answersC_Y : answersC_T;
         t.items.forEach(item => {
           const group = ansC[item.id]?.group || '';
           const usage = ansC[item.id]?.usage || '';
-          csvContent += `"${item.name}","${group}","${usage}"\n`;
+          content += `"${item.name}","${group}","${usage}"\n`;
         });
+        return content;
+      };
+
+      const handleExportCSV = (exportMode) => {
+        let csvContent = '\uFEFF'; 
+        
+        // Append user info header inside the CSV file as well
+        csvContent += `"${t.groupLabel}","${userGroup}"\n`;
+        csvContent += `"${t.studentIdLabel}","${studentId}"\n`;
+        csvContent += `"${t.nameLabel}","${userName}"\n\n`;
+
+        if (exportMode === 'BOTH') {
+          csvContent += generateCSVString('Y');
+          csvContent += `\n\n========================================\n\n`;
+          csvContent += generateCSVString('T');
+        } else {
+          csvContent += generateCSVString(exportMode);
+        }
+
+        const typePrefix = exportMode === 'Y' ? t.filenameY : (exportMode === 'T' ? t.filenameT : t.filenameBoth);
+        const safeName = userName.trim().replace(/\s+/g, '_');
+        const safeId = studentId.trim();
+        const fileName = `${typePrefix}_${userGroup}_${safeId}_${safeName}.csv`;
 
         const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
         const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
         link.setAttribute('href', url);
-        link.setAttribute('download', `Desert_Survival_${type}_${new Date().toISOString().slice(0,10)}.csv`);
+        link.setAttribute('download', fileName);
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
@@ -606,7 +666,7 @@
                           {(!isValidY || !isValidT) && (
                             <div className="flex items-center gap-2 text-xs sm:text-sm text-red-600 dark:text-red-400 font-medium">
                               <AlertCircle size={16} />
-                              {t.exportWarning}
+                              {t.exportWarningItems}
                             </div>
                           )}
                         </td>
@@ -616,24 +676,81 @@
                 </div>
               </section>
 
-              <section className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4 pb-2">
-                <button 
-                  onClick={() => handleExportCSV('Y')}
-                  disabled={!isValidY}
-                  className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium shadow-sm transition-all ${isValidY ? (theme === 'dark' ? 'bg-gray-800 text-gray-200 border border-gray-700 hover:bg-gray-700 hover:-translate-y-0.5' : 'bg-white text-gray-700 border border-gray-200 hover:bg-gray-50 hover:-translate-y-0.5') : 'bg-gray-200 text-gray-400 border border-gray-200 cursor-not-allowed dark:bg-gray-800 dark:border-gray-700 dark:text-gray-600'}`}
-                >
-                  <Download size={18} className={isValidY ? "text-[#005A3C] dark:text-emerald-500" : ""} />
-                  {t.exportYouCsv}
-                </button>
-                <button 
-                  onClick={() => handleExportCSV('T')}
-                  disabled={!isValidT}
-                  className={`flex items-center gap-2 px-6 py-3 rounded-lg font-medium shadow-sm transition-all ${isValidT ? (theme === 'dark' ? 'bg-[#005A3C]/80 text-white hover:bg-[#005A3C] hover:-translate-y-0.5' : 'bg-[#005A3C] text-white hover:bg-emerald-800 hover:-translate-y-0.5') : 'bg-gray-300 text-gray-500 cursor-not-allowed dark:bg-gray-700/50 dark:text-gray-500'}`}
-                >
-                  <Download size={18} />
-                  {t.exportTeamCsv}
-                </button>
+              {/* 匯出資訊填寫與按鈕區塊 */}
+              <section className={`p-6 md:p-8 rounded-xl shadow-sm border ${theme === 'dark' ? 'bg-[#1e293b] border-gray-700' : 'bg-white border-gray-200'}`}>
+                <h3 className="text-lg font-bold mb-4 flex items-center gap-2 font-serif text-[#005A3C]">
+                  <UserIcon size={20} /> {t.userInfoTitle}
+                </h3>
+                
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                  <div>
+                    <label className={`block text-sm font-medium mb-1.5 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>{t.groupLabel}</label>
+                    <select 
+                      value={userGroup} 
+                      onChange={e => setUserGroup(e.target.value)} 
+                      className={`w-full p-2.5 border rounded-lg focus:ring-2 focus:ring-[#005A3C] focus:outline-none transition-colors ${theme === 'dark' ? 'bg-gray-800 border-gray-600 text-white' : 'bg-gray-50 border-gray-300 text-gray-900'}`}
+                    >
+                      <option value="">-- {t.groupSelect} --</option>
+                      {groupOptionsList.map(g => <option key={g} value={g}>{g}</option>)}
+                    </select>
+                  </div>
+                  <div>
+                    <label className={`block text-sm font-medium mb-1.5 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>{t.studentIdLabel}</label>
+                    <input 
+                      type="text" 
+                      value={studentId} 
+                      onChange={e => setStudentId(e.target.value)} 
+                      placeholder={t.studentIdPlaceholder}
+                      className={`w-full p-2.5 border rounded-lg focus:ring-2 focus:ring-[#005A3C] focus:outline-none transition-colors ${theme === 'dark' ? 'bg-gray-800 border-gray-600 text-white placeholder-gray-500' : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-400'}`} 
+                    />
+                  </div>
+                  <div>
+                    <label className={`block text-sm font-medium mb-1.5 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}`}>{t.nameLabel}</label>
+                    <input 
+                      type="text" 
+                      value={userName} 
+                      onChange={e => setUserName(e.target.value)} 
+                      placeholder={t.namePlaceholder}
+                      className={`w-full p-2.5 border rounded-lg focus:ring-2 focus:ring-[#005A3C] focus:outline-none transition-colors ${theme === 'dark' ? 'bg-gray-800 border-gray-600 text-white placeholder-gray-500' : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-400'}`} 
+                    />
+                  </div>
+                </div>
+
+                {!isUserInfoValid && (
+                  <div className="flex items-center gap-2 text-sm text-amber-600 dark:text-amber-500 font-medium mb-4 bg-amber-50 dark:bg-amber-900/20 p-3 rounded border border-amber-200 dark:border-amber-800/50">
+                    <AlertCircle size={16} />
+                    {t.exportWarningUser}
+                  </div>
+                )}
+
+                <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center items-center pt-2">
+                  <button 
+                    onClick={() => handleExportCSV('Y')}
+                    disabled={!isUserInfoValid || !isValidY}
+                    className={`flex-1 flex justify-center items-center gap-2 px-4 py-3 rounded-lg font-medium shadow-sm transition-all whitespace-nowrap ${isUserInfoValid && isValidY ? (theme === 'dark' ? 'bg-gray-800 text-emerald-400 border border-emerald-900 hover:bg-gray-700 hover:-translate-y-0.5' : 'bg-white text-[#005A3C] border border-emerald-200 hover:bg-emerald-50 hover:-translate-y-0.5') : 'bg-gray-200 text-gray-400 border border-gray-200 cursor-not-allowed dark:bg-gray-800 dark:border-gray-700 dark:text-gray-600'}`}
+                  >
+                    <Download size={18} />
+                    {t.exportYouCsv}
+                  </button>
+                  <button 
+                    onClick={() => handleExportCSV('T')}
+                    disabled={!isUserInfoValid || !isValidT}
+                    className={`flex-1 flex justify-center items-center gap-2 px-4 py-3 rounded-lg font-medium shadow-sm transition-all whitespace-nowrap ${isUserInfoValid && isValidT ? (theme === 'dark' ? 'bg-gray-800 text-emerald-400 border border-emerald-900 hover:bg-gray-700 hover:-translate-y-0.5' : 'bg-white text-[#005A3C] border border-emerald-200 hover:bg-emerald-50 hover:-translate-y-0.5') : 'bg-gray-200 text-gray-400 border border-gray-200 cursor-not-allowed dark:bg-gray-800 dark:border-gray-700 dark:text-gray-600'}`}
+                  >
+                    <Download size={18} />
+                    {t.exportTeamCsv}
+                  </button>
+                  <button 
+                    onClick={() => handleExportCSV('BOTH')}
+                    disabled={!isUserInfoValid || !isValidY || !isValidT}
+                    className={`flex-1 sm:flex-[1.5] flex justify-center items-center gap-2 px-4 py-3 rounded-lg font-medium shadow-sm transition-all whitespace-nowrap ${isUserInfoValid && isValidY && isValidT ? (theme === 'dark' ? 'bg-[#005A3C]/80 text-white hover:bg-[#005A3C] hover:-translate-y-0.5' : 'bg-[#005A3C] text-white hover:bg-emerald-800 hover:-translate-y-0.5') : 'bg-gray-300 text-gray-500 cursor-not-allowed dark:bg-gray-700/50 dark:text-gray-500'}`}
+                  >
+                    <Download size={18} />
+                    {t.exportBothCsv}
+                  </button>
+                </div>
               </section>
+
             </div>
           </main>
 
