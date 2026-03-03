@@ -37,8 +37,6 @@
     const Moon = (p) => <SvgIcon path={<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>} {...p} />;
     const Sun = (p) => <SvgIcon path={<><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></>} {...p} />;
     const Languages = (p) => <SvgIcon path={<><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></>} {...p} />;
-    const Volume2 = (p) => <SvgIcon path={<><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></>} {...p} />;
-    const VolumeX = (p) => <SvgIcon path={<><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" x2="17" y1="9" y2="15"/><line x1="17" x2="23" y1="9" y2="15"/></>} {...p} />;
     const Info = (p) => <SvgIcon path={<><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></>} {...p} />;
     const FileText = (p) => <SvgIcon path={<><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></>} {...p} />;
     const CheckSquare = (p) => <SvgIcon path={<><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 12 2 2 4-4"/></>} {...p} />;
@@ -48,20 +46,34 @@
     const AlertCircle = (p) => <SvgIcon path={<><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></>} {...p} />;
     const Download = (p) => <SvgIcon path={<><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></>} {...p} />;
     const UserIcon = (p) => <SvgIcon path={<><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></>} {...p} />;
+    const Play = (p) => <SvgIcon path={<polygon points="5 3 19 12 5 21 5 3"/>} {...p} />;
+    const Pause = (p) => <SvgIcon path={<><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></>} {...p} />;
+    const StopCircle = (p) => <SvgIcon path={<><circle cx="12" cy="12" r="10"/><rect x="9" y="9" width="6" height="6"/></>} {...p} />;
+    const Lock = (p) => <SvgIcon path={<><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></>} {...p} />;
 
     // --- Data & Translations ---
     const translations = {
       zh: {
         title: "沙漠求生 (Desert Survival) 案例分析",
         subtitle: "危機決策與團隊共識工作坊",
-        smmcAbbr: "[SMMC]",
-        smmcFull: "國際策略管理",
+        tbAbbr: "[TB]",
+        tbFull: "團隊建立",
         version: "版本: 2026.02.23",
         copyright: "© 2026 For educational use only. All rights reserved.",
         langToggle: "English",
         themeToggle: "切換主題",
-        voicePlay: "語音導覽",
-        voiceStop: "停止語音",
+        
+        // Login Section
+        loginTitle: "系統登入",
+        passwordPlaceholder: "請輸入登入密碼",
+        loginButton: "進入系統",
+        loginError: "密碼錯誤，請重新輸入",
+
+        // Voice
+        voicePlay: "播放語音",
+        voicePause: "暫停",
+        voiceResume: "繼續播放",
+        voiceStop: "停止",
         
         // Export Section
         userInfoTitle: "填寫匯出資訊",
@@ -145,14 +157,24 @@
       en: {
         title: "Desert Survival Case Study",
         subtitle: "Crisis Decision-Making & Team Consensus Workshop",
-        smmcAbbr: "[SMMC]",
-        smmcFull: "Strategic Management of Multinational Corporations",
+        tbAbbr: "[TB]",
+        tbFull: "Team Building",
         version: "Version: 2026.02.23",
         copyright: "© 2026 For educational use only. All rights reserved.",
         langToggle: "中文",
         themeToggle: "Toggle Theme",
-        voicePlay: "Voice Guide",
-        voiceStop: "Stop Voice",
+        
+        // Login Section
+        loginTitle: "System Login",
+        passwordPlaceholder: "Enter password",
+        loginButton: "Enter System",
+        loginError: "Incorrect password, please try again",
+
+        // Voice
+        voicePlay: "Play Guide",
+        voicePause: "Pause",
+        voiceResume: "Resume",
+        voiceStop: "Stop",
         
         // Export Section
         userInfoTitle: "Export Information",
@@ -239,9 +261,16 @@
 
     // --- Main App Component ---
     const App = () => {
+      // Auth State
+      const [isAuthenticated, setIsAuthenticated] = useState(false);
+      const [loginPassword, setLoginPassword] = useState('');
+      const [passwordError, setPasswordError] = useState(false);
+
       const [lang, setLang] = useState('zh');
       const [theme, setTheme] = useState('light');
-      const [isSpeaking, setIsSpeaking] = useState(false);
+      
+      // Voice State
+      const [speechState, setSpeechState] = useState('idle'); // 'idle' | 'playing' | 'paused'
       
       const [userGroup, setUserGroup] = useState('');
       const [studentId, setStudentId] = useState('');
@@ -284,12 +313,26 @@
         }
       }, [theme]);
 
-      const handleVoice = () => {
-        if (isSpeaking) {
-          window.speechSynthesis.cancel();
-          setIsSpeaking(false);
+      // --- Voice Controls Logic ---
+      const stopVoice = () => {
+        window.speechSynthesis.cancel();
+        setSpeechState('idle');
+      };
+
+      const pauseVoice = () => {
+        window.speechSynthesis.pause();
+        setSpeechState('paused');
+      };
+
+      const playVoice = () => {
+        if (speechState === 'paused') {
+          window.speechSynthesis.resume();
+          setSpeechState('playing');
           return;
         }
+        
+        stopVoice(); // Clear any existing speech
+        
         const textToSpeak = t.situationText;
         const utterance = new SpeechSynthesisUtterance(textToSpeak);
         
@@ -315,16 +358,20 @@
         }
 
         utterance.rate = 0.95;
-        utterance.onend = () => setIsSpeaking(false);
+        utterance.onend = () => setSpeechState('idle');
+        utterance.onerror = () => setSpeechState('idle');
+        
         window.speechSynthesis.speak(utterance);
-        setIsSpeaking(true);
+        setSpeechState('playing');
       };
 
+      // Cleanup speech on unmount or language change
       useEffect(() => {
-        window.speechSynthesis.cancel();
-        setIsSpeaking(false);
+        stopVoice();
       }, [lang]);
 
+
+      // --- Form Handlers ---
       const togglePartA = (id, type) => {
         const currentList = type === 'Y' ? answersA_Y : answersA_T;
         const setter = type === 'Y' ? setAnswersA_Y : setAnswersA_T;
@@ -386,7 +433,6 @@
       const handleExportCSV = (exportMode) => {
         let csvContent = '\uFEFF'; 
         
-        // Append user info header inside the CSV file as well
         csvContent += `"${t.groupLabel}","${userGroup}"\n`;
         csvContent += `"${t.studentIdLabel}","${studentId}"\n`;
         csvContent += `"${t.nameLabel}","${userName}"\n\n`;
@@ -414,6 +460,65 @@
         document.body.removeChild(link);
       };
 
+      const handleLogin = (e) => {
+        e.preventDefault();
+        if (loginPassword === 'desertsurvivalthebest') {
+          setIsAuthenticated(true);
+          setPasswordError(false);
+        } else {
+          setPasswordError(true);
+        }
+      };
+
+      // --- Login Screen ---
+      if (!isAuthenticated) {
+        return (
+          <div className={`min-h-screen flex items-center justify-center font-sans transition-colors duration-300 ${theme === 'dark' ? 'bg-[#0f172a] text-gray-200' : 'bg-[#f8f9fa] text-gray-800'}`}>
+            <div className={`p-8 rounded-xl shadow-lg border-t-[6px] border-[#005A3C] w-full max-w-md ${theme === 'dark' ? 'bg-[#1e293b]' : 'bg-white'}`}>
+              <div className="flex justify-between items-center mb-6">
+                 <h1 className="text-xl font-serif font-bold text-[#005A3C] tracking-tight">{t.tbAbbr}</h1>
+                 <div className="flex gap-2">
+                    <button onClick={() => setLang(lang === 'zh' ? 'en' : 'zh')} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                      <Languages size={18} />
+                    </button>
+                    <button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                      {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+                    </button>
+                 </div>
+              </div>
+              
+              <div className="text-center mb-8">
+                <div className="mx-auto bg-emerald-100 dark:bg-[#005A3C]/30 text-[#005A3C] dark:text-emerald-400 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                  <Lock size={32} />
+                </div>
+                <h2 className="text-2xl font-bold">{t.loginTitle}</h2>
+                <p className={`text-sm mt-2 font-serif ${theme === 'dark' ? 'text-gray-400' : 'text-gray-500'}`}>{t.title}</p>
+              </div>
+
+              <form onSubmit={handleLogin}>
+                  <input 
+                      type="password" 
+                      value={loginPassword}
+                      onChange={(e) => {
+                        setLoginPassword(e.target.value);
+                        setPasswordError(false);
+                      }}
+                      placeholder={t.passwordPlaceholder}
+                      className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-[#005A3C] focus:outline-none mb-2 transition-colors ${theme === 'dark' ? 'bg-gray-800 border-gray-600 text-white placeholder-gray-500' : 'bg-gray-50 border-gray-300 text-gray-900'} ${passwordError ? 'border-red-500 focus:ring-red-500 bg-red-50 dark:bg-red-900/10' : ''}`}
+                  />
+                  <div className="h-6 mb-2">
+                    {passwordError && <p className="text-red-500 text-sm flex items-center gap-1"><AlertCircle size={14}/> {t.loginError}</p>}
+                  </div>
+                  <button type="submit" className="w-full bg-[#005A3C] text-white p-3 rounded-lg font-bold hover:bg-emerald-800 transition shadow-md">
+                      {t.loginButton}
+                  </button>
+              </form>
+            </div>
+          </div>
+        );
+      }
+
+      // --- Main App Rendering ---
       return (
         <div className={`min-h-screen font-sans transition-colors duration-300 ${theme === 'dark' ? 'bg-[#0f172a] text-gray-200' : 'bg-[#f8f9fa] text-gray-800'}`}>
           <header className={`sticky top-0 z-50 border-t-[6px] border-[#005A3C] shadow-sm ${theme === 'dark' ? 'bg-[#1e293b]' : 'bg-white'}`}>
@@ -421,15 +526,15 @@
               <div className="flex flex-col">
                 <button 
                   onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                  className="text-left group cursor-pointer mb-1.5"
+                  className="text-left group cursor-pointer mb-1.5 w-max"
                   title="回到頁首 (Back to top)"
                 >
                   <div className="flex items-center gap-2">
                     <span className="font-bold text-[#005A3C] bg-emerald-100 dark:bg-[#005A3C]/20 px-1.5 py-0.5 rounded text-xs group-hover:bg-emerald-200 dark:group-hover:bg-[#005A3C]/40 transition-colors">
-                      {t.smmcAbbr}
+                      {t.tbAbbr}
                     </span>
                     <span className="text-xs md:text-sm font-medium text-gray-500 dark:text-gray-400 group-hover:text-[#005A3C] dark:group-hover:text-emerald-400 transition-colors">
-                      {t.smmcFull}
+                      {t.tbFull}
                     </span>
                   </div>
                 </button>
@@ -449,18 +554,43 @@
 
           <main className="max-w-6xl mx-auto px-4 md:px-6 py-8 space-y-10">
             <section className={`p-8 rounded-xl shadow-sm border-l-4 border-[#005A3C] ${theme === 'dark' ? 'bg-[#1e293b]' : 'bg-white'}`}>
-              <div className="flex justify-between items-start mb-6">
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
                 <h2 className="text-2xl font-serif font-bold text-[#005A3C] flex items-center gap-2">
                   <Info className="text-[#005A3C]" /> {t.situationTitle}
                 </h2>
-                <button 
-                  onClick={handleVoice}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition ${isSpeaking ? 'bg-red-50 text-red-600 border border-red-200 dark:bg-red-900/30 dark:text-red-400' : 'bg-emerald-50 text-[#005A3C] border border-emerald-200 hover:bg-emerald-100 dark:bg-[#005A3C]/20 dark:text-emerald-400'}`}
-                >
-                  {isSpeaking ? <VolumeX size={16} /> : <Volume2 size={16} />}
-                  {isSpeaking ? t.voiceStop : t.voicePlay}
-                </button>
+                
+                {/* Voice Controls Group */}
+                <div className="flex items-center gap-2 bg-gray-50 dark:bg-[#0f172a]/50 p-1.5 rounded-lg border border-gray-200 dark:border-gray-700">
+                  {speechState !== 'playing' ? (
+                    <button 
+                      onClick={playVoice}
+                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition ${theme === 'dark' ? 'bg-[#005A3C]/30 text-emerald-400 hover:bg-[#005A3C]/50' : 'bg-emerald-100 text-[#005A3C] hover:bg-emerald-200'}`}
+                    >
+                      <Play size={16} />
+                      {speechState === 'paused' ? t.voiceResume : t.voicePlay}
+                    </button>
+                  ) : (
+                    <button 
+                      onClick={pauseVoice}
+                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition ${theme === 'dark' ? 'bg-amber-900/40 text-amber-400 hover:bg-amber-900/60' : 'bg-amber-100 text-amber-700 hover:bg-amber-200'}`}
+                    >
+                      <Pause size={16} />
+                      {t.voicePause}
+                    </button>
+                  )}
+                  
+                  {(speechState === 'playing' || speechState === 'paused') && (
+                    <button 
+                      onClick={stopVoice}
+                      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-sm font-medium transition ${theme === 'dark' ? 'bg-red-900/30 text-red-400 hover:bg-red-900/50' : 'bg-red-50 text-red-600 hover:bg-red-100 border border-red-100'}`}
+                    >
+                      <StopCircle size={16} />
+                      {t.voiceStop}
+                    </button>
+                  )}
+                </div>
               </div>
+              
               <div className="space-y-4 text-justify leading-relaxed">
                 {t.situationText.split('\n\n').map((para, idx) => (
                   <p key={idx} className={theme === 'dark' ? 'text-gray-300' : 'text-gray-700'}>{para}</p>
